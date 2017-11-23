@@ -19,6 +19,6 @@ public class ParseService implements PersonalAffairsService {
     @Override
     public List<Student> getStudentList(String xmlParserType) {
 
-        return personalAffairsDAO.parseXML();
+        return personalAffairsDAO.parseXML(xmlParserType);
     }
 }

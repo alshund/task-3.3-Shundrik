@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentsSAXParser extends DefaultHandler {
-    private List<Student> studentList = new ArrayList<>();
+    private List<Student> studentList;
     private Student student;
     private Parent father;
     private Parent mother;
@@ -23,10 +23,16 @@ public class StudentsSAXParser extends DefaultHandler {
     }
 
     @Override
+    public void startDocument() throws SAXException {
+
+        studentList = new ArrayList<>();
+    }
+
+    @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
         text = new StringBuilder();
-        executeStartElement(qName);
+        parseStartElement(qName, attributes);
     }
 
     @Override
@@ -38,15 +44,16 @@ public class StudentsSAXParser extends DefaultHandler {
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
 
-        executeEndElement(qName);
+        parseEndElement(qName);
     }
 
-    private void executeStartElement(String qName) {
+    private void parseStartElement(String qName, Attributes attributes) {
 
         Parameters tagName = Parameters.valueOf(qName.replace(":", "_").toUpperCase());
         switch (tagName) {
             case STUDENT:
                 student = new Student();
+                student.setId(Integer.parseInt(attributes.getValue(Parameters.ID.name().toLowerCase())));
                 break;
             case FATHER:
                 father = new Parent();
@@ -57,7 +64,21 @@ public class StudentsSAXParser extends DefaultHandler {
         }
     }
 
-    private void executeEndElement(String qName) {
+    private void parseEndElement(String qName) {
+
+        if (qName.contains(Parameters.FNS.name().toLowerCase())) {
+
+            parseFatherEndElement(qName);
+        } else if (qName.contains(Parameters.MNS.name().toLowerCase())) {
+
+            parserMotherEndElement(qName);
+        } else {
+
+            parseStudentEndElement(qName);
+        }
+    }
+
+    private void parseStudentEndElement(String qName) {
 
         Parameters tagName = Parameters.valueOf(qName.replace(":", "_").toUpperCase());
         switch (tagName) {
@@ -79,6 +100,13 @@ public class StudentsSAXParser extends DefaultHandler {
             case SISTERS_AMOUNT:
                 student.setSistersAmount(Integer.parseInt(text.toString()));
                 break;
+        }
+    }
+
+    private void parseFatherEndElement(String qName) {
+
+        Parameters tagName = Parameters.valueOf(qName.replace(":", "_").toUpperCase());
+        switch (tagName) {
             case FATHER:
                 student.setFather(father);
                 break;
@@ -94,6 +122,13 @@ public class StudentsSAXParser extends DefaultHandler {
             case FNS_SALARY:
                 father.setSalary(Double.parseDouble(text.toString()));
                 break;
+        }
+    }
+
+    private void parserMotherEndElement(String qName) {
+
+        Parameters tagName = Parameters.valueOf(qName.replace(":", "_").toUpperCase());
+        switch (tagName) {
             case MOTHER:
                 student.setFather(mother);
                 break;

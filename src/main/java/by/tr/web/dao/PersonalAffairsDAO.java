@@ -5,5 +5,5 @@ import by.tr.web.domain.Student;
 import java.util.List;
 
 public interface PersonalAffairsDAO {
-    List<Student> parseXML();
+    List<Student> parseXML(String xmlParserType);
 }

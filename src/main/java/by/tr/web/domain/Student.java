@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class Student implements Serializable {
     private static final long serialVersionUID = 7627527785535323891L;
 
+    private int id;
+
     private String firstName;
     private String surname;
     private String patronymic;
@@ -22,6 +24,7 @@ public class Student implements Serializable {
 
         Student student = (Student) o;
 
+        if (id != student.id) return false;
         if (brothersAmount != student.brothersAmount) return false;
         if (sistersAmount != student.sistersAmount) return false;
         if (firstName != null ? !firstName.equals(student.firstName) : student.firstName != null) return false;
@@ -33,7 +36,8 @@ public class Student implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = firstName != null ? firstName.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (patronymic != null ? patronymic.hashCode() : 0);
         result = 31 * result + (father != null ? father.hashCode() : 0);
@@ -41,6 +45,14 @@ public class Student implements Serializable {
         result = 31 * result + brothersAmount;
         result = 31 * result + sistersAmount;
         return result;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {

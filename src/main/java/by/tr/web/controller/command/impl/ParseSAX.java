@@ -14,19 +14,19 @@ import java.io.IOException;
 import java.util.List;
 
 public class ParseSAX implements Command {
-    private PersonalAffairsService dpService;
+    private PersonalAffairsService dataProcessingService;
 
     public ParseSAX() {
 
         ServiceFactory instance = ServiceFactory.getInstance();
-        dpService = instance.getDataProcessingService();
+        dataProcessingService = instance.getDataProcessingService();
     }
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Student> studentList = dpService.getStudentList(Parameters.SAX.name());
-        request.setAttribute("ParserResult", studentList);
+        List<Student> studentList = dataProcessingService.getStudentList(Parameters.SAX.name());
+        request.setAttribute("page", studentList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ParserResult.jsp");
         dispatcher.forward(request, response);
     }
