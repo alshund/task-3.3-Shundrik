@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.web.tr.com/parent"
+        xmlns:pns="http://www.web.tr.com/parent">
+
+    <element name="parent" type="pns:Parent"/>
+
+    <complexType name="Parent">
+        <sequence>
+            <element name="surname" type="string"/>
+            <element name="first_name" type="string"/>
+            <element name="patronymic" type="string"/>
+            <element name="salary" type="double"/>
+        </sequence>
+    </complexType>
+
+
+</schema>

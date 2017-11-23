@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http:://www.web.tr.com/student"
+        xmlns:sns="http:://www.web.tr.com/student"
+        xmlns:pns="http://www.web.tr.com/parent">
+
+    <element name="students">
+        <complexType>
+            <sequence>
+                <element name="student" type="sns:Student" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <complexType name="Student">
+        <sequence>
+            <element name="surname" type="string"/>
+            <element name="first_name" type="string"/>
+            <element name="patronymic" type="string"/>
+            <element name="father" type="pns:Parent" minOccurs="1" maxOccurs="1"/>
+            <element name="mother" type="pns:Parent" minOccurs="1" maxOccurs="1"/>
+            <element name="brothers_amount" type="int"/>
+            <element name="sisters_amount" type="int"/>
+        </sequence>
+    </complexType>
+
+
+</schema>
