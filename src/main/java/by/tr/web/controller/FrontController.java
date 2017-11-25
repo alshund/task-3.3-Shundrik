@@ -19,24 +19,23 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        try {
-            String commandName = req.getParameter(Parameters.COMMAND.name().toLowerCase());
-            command = commandDirector.getCommand(commandName.toUpperCase());
-            command.execute(req, resp);
-        } catch (ServiceException e) {
-            resp.sendRedirect(FilePath.EXCEPTION_PAGE);
-        }
+        doCommand(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        doCommand(req, resp);
+    }
+
+    private void doCommand(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
         try {
-            String commandName = req.getParameter(Parameters.COMMAND.name().toLowerCase());
+            String commandName = request.getParameter(Parameters.COMMAND.name().toLowerCase());
             command = commandDirector.getCommand(commandName.toUpperCase());
-            command.execute(req, resp);
+            command.execute(request, response);
         } catch (ServiceException e) {
-            resp.sendRedirect(FilePath.EXCEPTION_PAGE);
+            response.sendRedirect(FilePath.EXCEPTION_PAGE);
         }
     }
 }
