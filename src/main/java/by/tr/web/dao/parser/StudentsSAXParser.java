@@ -32,7 +32,7 @@ public class StudentsSAXParser extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
         text = new StringBuilder();
-        parseStartElement(qName, attributes);
+        parseStartElement(qName);
     }
 
     @Override
@@ -47,13 +47,12 @@ public class StudentsSAXParser extends DefaultHandler {
         parseEndElement(qName);
     }
 
-    private void parseStartElement(String qName, Attributes attributes) {
+    private void parseStartElement(String qName) {
 
-        Parameters tagName = Parameters.valueOf(qName.replace(":", "_").toUpperCase());
+        Parameters tagName = Parameters.valueOf(toXMLFormat(qName));
         switch (tagName) {
             case STUDENT:
                 student = new Student();
-                student.setId(Integer.parseInt(attributes.getValue(Parameters.ID.name().toLowerCase())));
                 break;
             case FATHER:
                 father = new Parent();
@@ -80,7 +79,7 @@ public class StudentsSAXParser extends DefaultHandler {
 
     private void parseStudentEndElement(String qName) {
 
-        Parameters tagName = Parameters.valueOf(qName.replace(":", "_").toUpperCase());
+        Parameters tagName = Parameters.valueOf(toXMLFormat(qName));
         switch (tagName) {
             case STUDENT:
                 studentList.add(student);
@@ -100,12 +99,18 @@ public class StudentsSAXParser extends DefaultHandler {
             case SISTERS_AMOUNT:
                 student.setSistersAmount(Integer.parseInt(text.toString()));
                 break;
+            case FATHER:
+                student.setFather(father);
+                break;
+            case MOTHER:
+                student.setMother(mother);
+                break;
         }
     }
 
     private void parseFatherEndElement(String qName) {
 
-        Parameters tagName = Parameters.valueOf(qName.replace(":", "_").toUpperCase());
+        Parameters tagName = Parameters.valueOf(toXMLFormat(qName));
         switch (tagName) {
             case FATHER:
                 student.setFather(father);
@@ -127,10 +132,10 @@ public class StudentsSAXParser extends DefaultHandler {
 
     private void parserMotherEndElement(String qName) {
 
-        Parameters tagName = Parameters.valueOf(qName.replace(":", "_").toUpperCase());
+        Parameters tagName = Parameters.valueOf(toXMLFormat(qName));
         switch (tagName) {
             case MOTHER:
-                student.setFather(mother);
+                student.setMother(mother);
                 break;
             case MNS_SURNAME:
                 mother.setSurname(text.toString());
@@ -145,5 +150,10 @@ public class StudentsSAXParser extends DefaultHandler {
                 mother.setSalary(Double.parseDouble(text.toString()));
                 break;
         }
+    }
+
+    private String toXMLFormat(String qName) {
+
+        return qName.replaceFirst(":", "_").toUpperCase();
     }
 }

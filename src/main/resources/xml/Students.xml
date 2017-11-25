@@ -4,7 +4,7 @@
               xmlns:mns="http://www.web.tr.com/parent"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http:://www.web.tr.com/student Students.xsd">
-    <student id="1">
+    <student>
         <surname>Князев</surname>
         <first_name>Рудольф</first_name>
         <patronymic>Ильич</patronymic>
@@ -23,7 +23,7 @@
         <brothers_amount>16</brothers_amount>
         <sisters_amount>12</sisters_amount>
     </student>
-    <student id="2">
+    <student>
         <surname>Некрасов</surname>
         <first_name>Виталий</first_name>
         <patronymic>Миронович</patronymic>
@@ -42,7 +42,7 @@
         <brothers_amount>6</brothers_amount>
         <sisters_amount>5</sisters_amount>
     </student>
-    <student id="3">
+    <student>
         <surname>Евдокимов</surname>
         <first_name>Вили</first_name>
         <patronymic>Максович</patronymic>
@@ -61,7 +61,7 @@
         <brothers_amount>1</brothers_amount>
         <sisters_amount>20</sisters_amount>
     </student>
-    <student id="4">
+    <student>
         <surname>Носков</surname>
         <first_name>Аристарх</first_name>
         <patronymic>Рудольфович</patronymic>
@@ -80,7 +80,7 @@
         <brothers_amount>6</brothers_amount>
         <sisters_amount>9</sisters_amount>
     </student>
-    <student id="5">
+    <student>
         <surname>Хохлов</surname>
         <first_name>Карл</first_name>
         <patronymic>Игоревич</patronymic>

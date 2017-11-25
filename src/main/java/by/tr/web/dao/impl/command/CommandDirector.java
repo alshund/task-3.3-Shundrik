@@ -14,7 +14,7 @@ public class CommandDirector {
     public CommandDirector() {
 
         commands.put(Parameters.SAX.name(), new ParseSAX());
-        commands.put(Parameters.StAX.name(), new ParseStAX());
+        commands.put(Parameters.STAX.name(), new ParseStAX());
         commands.put(Parameters.DOM.name(), new ParseDOM());
     }
 

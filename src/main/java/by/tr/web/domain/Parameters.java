@@ -3,7 +3,7 @@ package by.tr.web.domain;
 public enum Parameters {
     COMMAND,
 
-    SAX, StAX, DOM,
+    SAX, STAX, DOM, NEXT_PAGE, PREVIOUS_PAGE,
 
     SNS_STUDENTS,
     STUDENT, FATHER, MOTHER,
@@ -12,12 +12,15 @@ public enum Parameters {
 
     SALARY,
 
+
     FNS,
     FNS_SURNAME, FNS_FIRST_NAME, FNS_PATRONYMIC,
     FNS_SALARY,
 
     MNS,
     MNS_SURNAME, MNS_FIRST_NAME, MNS_PATRONYMIC,
-    MNS_SALARY
+    MNS_SALARY,
+
+    RECORDS_NUMBER, CURRENT_PAGE, PAGE
 
 }

@@ -7,6 +7,15 @@
 
 
   <servlet>
+    <servlet-name>ExceptionPage</servlet-name>
+    <jsp-file>/WEB-INF/jsp/ExceptionPage.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExceptionPage</servlet-name>
+    <url-pattern>/XMLParserFailed</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>ParserResult</servlet-name>
     <display-name>ParserResult</display-name>
     <jsp-file>/WEB-INF/jsp/ParserResult.jsp</jsp-file>

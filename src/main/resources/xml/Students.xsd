@@ -22,7 +22,6 @@
             <element name="brothers_amount" type="int"/>
             <element name="sisters_amount" type="int"/>
         </sequence>
-        <attribute name="id" type="int" use="required"/>
     </complexType>
 
 
