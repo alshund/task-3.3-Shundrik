@@ -24,7 +24,7 @@ public class FrontController extends HttpServlet {
             command = commandDirector.getCommand(commandName.toUpperCase());
             command.execute(req, resp);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            resp.sendRedirect(FilePath.EXCEPTION_PAGE);
         }
     }
 
